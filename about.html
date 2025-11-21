@@ -29,12 +29,12 @@
 
         /* Banner image with centered title */
         .banner {
+            display: none;
             width: 100%;
             height: 320px;
             background-image: url('images/Gatto_SfondoBianco.png');
             background-size: cover;
             background-position: center center;
-            display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
@@ -133,20 +133,39 @@
         /* Big buttons (replaceable with images) */
         .big-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             justify-content: center;
             align-items: center;
-            margin: 2.5rem 0;
-            max-width: 980px;
+            margin: 2rem 0;
+            max-width: 1250px;
             margin-left: auto;
             margin-right: auto;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        /* Container for the 3 small buttons */
+        .big-buttons > .big-btn.small {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Large button on the left */
+        .big-btn.large {
+            width: 400px;
+            aspect-ratio: 400 / 300;
+        }
+
+        /* Smaller buttons on the right */
+        .big-btn.small {
+            width: 200px;
+            aspect-ratio: 200 / 150;
         }
 
         .big-btn {
             position: relative;
             flex: 0 0 auto;
-            width: 300px;
-            aspect-ratio: 300 / 220;
             border: 0;
             padding: 0;
             cursor: pointer;
@@ -354,7 +373,8 @@
     <main>
         <!-- Big buttons section -->
         <section class="big-buttons">
-            <button class="big-btn" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
+            <!-- Large button on the left -->
+            <button class="big-btn large" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
                 </svg>
@@ -362,20 +382,30 @@
                     <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+
+            <!-- Small buttons on the right -->
+            <button class="big-btn small" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
+                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+            <button class="big-btn small" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn small" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
                 </svg>
             </button>
         </section>

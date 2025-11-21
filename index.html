@@ -28,12 +28,12 @@
 
         /* Banner image with centered title */
         .banner {
+            display: none;
             width: 100%;
             height: 320px;
             background-image: url('images/Gatto_SfondoBianco.png');
             background-size: cover;
             background-position: center center;
-            display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
@@ -129,33 +129,71 @@
             }
         }
 
-                /* Justified Gallery Container */
+                /* Masonry Gallery Container */
         .gallery-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            line-height: 0;
+            column-count: 3;
+            column-gap: 12px;
+            width: 100%;
+            padding: 0 1rem;
+            margin: 0 auto;
+        }
+
+        /* Responsive columns */
+        @media (max-width: 768px) {
+            .gallery-container {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-container {
+                column-count: 1;
+            }
         }
 
     /* Big buttons (replaceable with images) */
         .big-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             justify-content: center;
             align-items: center;
-            margin: 2.5rem 0;
+            margin: 2rem 0;
             /* limit max width so buttons don't span full page */
-            max-width: 980px;
+            max-width: 1250px;
             margin-left: auto;
             margin-right: auto;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        /* Container for the 3 small buttons */
+        .big-buttons > .big-btn.small {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Large button on the left */
+        .big-btn.large {
+            width: 400px;
+            aspect-ratio: 400 / 300;
+        }
+
+        /* Smaller buttons on the right */
+        .big-btn.small {
+            width: 200px;
+            aspect-ratio: 200 / 150;
+        }
+
+        /* Default size (if no class specified) */
+        .big-btn:not(.large):not(.small) {
+            width: 200px;
+            aspect-ratio: 200 / 150;
         }
 
         .big-btn {
             position: relative;
             flex: 0 0 auto;
-            /* specify only width and let the browser compute height via aspect-ratio */
-            width: 300px;
-            aspect-ratio: 300 / 220;
             border: 0;
             padding: 0;
             cursor: pointer;
@@ -215,29 +253,23 @@
                 padding: 0 1rem;
             }
             .big-btn { width: 100%; height: auto; aspect-ratio: 300 / 220; min-height: 160px; }
+            .big-btn.large { width: 100%; aspect-ratio: 300 / 220; }
+            .big-btn.small { width: 100%; aspect-ratio: 300 / 220; }
         }
  
 
-
-        .gallery-row {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-        }
-
-                /* Gallery Item */
+        /* Gallery Item */
         .gallery-item {
             position: relative;
             overflow: hidden;
-            flex-shrink: 0;
-            flex-grow: 0;
             opacity: 0;
             animation: fadeInUp 0.6s ease forwards;
-            /* center contained images so object-fit: contain shows them centered */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fafafa; /* subtle background to show letterboxing */
+            width: 100%;
+            height: auto;
+            background-color: #fafafa;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         @keyframes fadeInUp {
@@ -252,10 +284,10 @@
         }
 
         .gallery-item img {
-            /* Fill the gallery cell and crop as needed to avoid side bars */
+            /* Fit the image without cropping - maintain aspect ratio */
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* cover the area, cropping where necessary */
+            height: auto;
+            object-fit: contain;
             object-position: center center;
             display: block;
             transition: transform 0.3s ease;
@@ -354,7 +386,8 @@
     <main>
         <!-- Big buttons section -->
         <section class="big-buttons">
-            <button class="big-btn" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
+            <!-- Large button on the left -->
+            <button class="big-btn large" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
                 </svg>
@@ -362,20 +395,30 @@
                     <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+
+            <!-- Small buttons on the right -->
+            <button class="big-btn small" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
+                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+            <button class="big-btn small" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn small" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
                 </svg>
             </button>
         </section>
@@ -593,81 +636,28 @@
            
         ];
 
-                // Generate gallery with justified rows
+        // Generate gallery with simple 3-column grid
         function generateGallery() {
             const gallery = document.getElementById('gallery');
-            const containerWidth = gallery.offsetWidth || 1200;
-            const targetRowHeight = 280; // Target height for rows
-            const gap = 12;
-
-            let rows = [];
-            let currentRow = [];
-            let currentRowWidth = 0;
-
-            // Group items into rows
-            galleryItems.forEach((item, index) => {
-                const aspectRatio = item.width / item.height;
-                const scaledWidth = targetRowHeight * aspectRatio;
-
-                currentRow.push({ ...item, scaledWidth, aspectRatio, index });
-                currentRowWidth += scaledWidth;
-
-                // Check if row should break
-                const totalGaps = (currentRow.length - 1) * gap;
-                const projectedWidth = currentRowWidth + totalGaps;
-
-                // Start new row if we exceed container width (with some tolerance)
-                if (projectedWidth >= containerWidth - 100 || index === galleryItems.length - 1) {
-                    rows.push([...currentRow]);
-                    currentRow = [];
-                    currentRowWidth = 0;
-                }
-            });
-
-            // Render rows with proper sizing
             gallery.innerHTML = '';
-            rows.forEach((row, rowIndex) => {
-                const rowDiv = document.createElement('div');
-                rowDiv.className = 'gallery-row';
 
-                // Calculate the total aspect ratio for this row
-                const totalAspectRatio = row.reduce((sum, item) => sum + item.aspectRatio, 0);
-                const totalGaps = (row.length - 1) * gap;
-                const availableWidth = containerWidth - totalGaps;
+            // Simply create one item per image - CSS Grid handles the layout
+            galleryItems.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'gallery-item';
+                itemDiv.style.animationDelay = `${index * 0.05}s`;
 
-                // Calculate the actual row height to fit container width
-                const rowHeight = availableWidth / totalAspectRatio;
+                // Create image or placeholder using low-res thumb first
+                let imageHTML = '';
+                if (item.image) {
+                    const thumbSrc = item.thumb || item.image;
+                    imageHTML = `<img data-thumb="${thumbSrc}" data-full="${item.image}" alt="${item.title}" loading="lazy" class="gallery-img" style="width:100%; height:100%; display:block; object-fit: cover;" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E">`;
+                } else {
+                    imageHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%;">${item.title}</div>`;
+                }
 
-                row.forEach((item, itemIndex) => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'gallery-item';
-                    itemDiv.style.animationDelay = `${(rowIndex * row.length + itemIndex) * 0.05}s`;
-
-                    // Calculate width based on aspect ratio and row height
-                    const itemWidth = rowHeight * item.aspectRatio;
-
-                    // Use explicit width instead of flex-basis to prevent overlap
-                    itemDiv.style.width = `${itemWidth}px`;
-                    itemDiv.style.height = `${rowHeight}px`;
-                    itemDiv.style.flexShrink = '0';
-                    itemDiv.style.flexGrow = '0';
-
-                    // Create image or placeholder using low-res thumb first
-                    let imageHTML = '';
-                    if (item.image) {
-                        const thumbSrc = item.thumb || item.image;
-                        // fill the cell; object-fit:cover will crop to avoid letterboxing
-                        imageHTML = `<img data-thumb="${thumbSrc}" data-full="${item.image}" alt="${item.title}" loading="lazy" class="gallery-img" style="width:100%; height:100%; display:block;" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E">`;
-                    } else {
-                        imageHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%;">${item.title}</div>`;
-                    }
-
-                    itemDiv.innerHTML = `${imageHTML}`;
-
-                    rowDiv.appendChild(itemDiv);
-                });
-
-                gallery.appendChild(rowDiv);
+                itemDiv.innerHTML = imageHTML;
+                gallery.appendChild(itemDiv);
             });
         }
 
@@ -706,14 +696,16 @@
 
         // Initialize on page load
         window.addEventListener('load', generateGallery);
-        window.addEventListener('resize', generateGallery);
-
-        // after gallery is generated, setup lazy loading and lightbox hooks
         window.addEventListener('load', () => {
             // slight timeout to ensure DOM nodes exist
             setTimeout(() => {
                 setupGalleryLazyAndLightbox();
             }, 100);
+        });
+
+        // Simple resize handler - CSS Grid handles responsive layout automatically
+        window.addEventListener('resize', () => {
+            setupGalleryLazyAndLightbox();
         });
 
         // Mobile menu toggle
