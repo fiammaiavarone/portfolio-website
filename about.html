@@ -133,50 +133,43 @@
         /* Big buttons (replaceable with images) */
         .big-buttons {
             display: flex;
-            gap: 0.5rem;
+            gap: 0;
             justify-content: center;
             align-items: center;
             margin: 2rem 0;
-            max-width: 1250px;
+            max-width: 1300px;
             margin-left: auto;
             margin-right: auto;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-        }
-
-        /* Container for the 3 small buttons */
-        .big-buttons > .big-btn.small {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            flex-wrap: nowrap;
+            padding: 0;
         }
 
         /* Large button on the left */
         .big-btn.large {
-            width: 400px;
-            aspect-ratio: 400 / 300;
+            width: 550px;
+            height: 412px;
         }
 
         /* Smaller buttons on the right */
         .big-btn.small {
             width: 200px;
-            aspect-ratio: 200 / 150;
+            height: 150px;
+            margin-left: 0;
         }
 
         .big-btn {
             position: relative;
-            flex: 0 0 auto;
+            flex-shrink: 0;
             border: 0;
             padding: 0;
+            margin: 0;
             cursor: pointer;
             overflow: hidden;
             background-color: transparent;
             border-radius: 0;
             box-shadow: none;
             transition: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
         }
 
         /* First image layer */
@@ -229,82 +222,38 @@
 
         /* About Section */
         .about-section {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 3rem auto 0;
+            text-align: center;
         }
 
-        /* Two-column layout for about content */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .about-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
+        /* Handwritten title */
+        .handwritten-title {
+            font-family: 'Brush Script MT', 'Lucida Handwriting', 'Apple Chancery', cursive;
+            font-size: 4rem;
             margin-bottom: 2rem;
-            line-height: 1.2;
+            color: #000000;
+            font-weight: normal;
         }
 
-        .about-section-content {
-            margin-bottom: 3rem;
-        }
-
-        .about-section h2 {
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .bio {
+        /* Description text */
+        .description {
             font-size: 1.1rem;
             line-height: 1.8;
             color: #333333;
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+        /* Landscape photo */
+        .about-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             margin-top: 2rem;
-        }
-
-        .skill-item {
-            padding: 1.5rem;
-            background-color: #f9f9f9;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .skill-item:hover {
-            background-color: #f0f0f0;
-        }
-
-        .skill-item h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-item p {
-            font-size: 0.9rem;
-            color: #666666;
         }
 
         /* Footer */
@@ -341,22 +290,17 @@
                 display: flex;
             }
 
-            h1 {
-                font-size: 2rem;
+            .handwritten-title {
+                font-size: 2.5rem;
             }
 
-            .skills {
-                grid-template-columns: 1fr;
+            .description {
+                font-size: 1rem;
+                padding: 0 1rem;
             }
 
             main {
                 padding: 2rem 1rem;
-            }
-
-            /* Stack columns on mobile */
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
             }
         }
     </style>
@@ -374,12 +318,12 @@
         <!-- Big buttons section -->
         <section class="big-buttons">
             <!-- Large button on the left -->
-            <button class="big-btn large" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
-                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
+            <button class="big-btn large" data-first="images/Fiamma_Logo.svg" data-second="images/Fiamma_Logo_Click.svg" data-link="index.html" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Fiamma_Logo.svg" />
                 </svg>
-                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
+                <svg class="second" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Fiamma_Logo_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Fiamma_Logo_Click.svg" />
                 </svg>
             </button>
 
@@ -410,65 +354,18 @@
             </button>
         </section>
 
-        <!-- About content with two-column layout -->
+        <!-- About content -->
         <div class="about-section">
-            <div class="about-container">
-                <!-- Left column: Portrait image -->
-                <div class="about-image-wrapper">
-                    <img src="images/MeetTheArtist.jpg" alt="Portrait of Fiamma" class="about-image">
-                </div>
+            <!-- Handwritten title -->
+            <h1 class="handwritten-title">Hi I'm Fiamma</h1>
 
-                <!-- Right column: About text -->
-                <div class="about-content">
-                    <section>
-                        <h2>My Story</h2>
-                        <p class="bio">
-                            I'm a passionate illustrator dedicated to creating compelling visual narratives. With expertise in both digital and traditional mediums, I bring stories to life through thoughtful composition, vibrant color, and engaging character design.
-                        </p>
-                        <p class="bio">
-                            My journey in illustration began with a love for storytelling and visual communication. Over the years, I've developed a unique style that blends traditional artistic techniques with modern digital tools, allowing me to create work that feels both timeless and contemporary.
-                        </p>
-                    </section>
+            <!-- Description text -->
+            <p class="description">
+                I'm a passionate illustrator dedicated to creating compelling visual narratives. With expertise in both digital and traditional mediums, I bring stories to life through thoughtful composition, vibrant color, and engaging character design. My work blends traditional artistic techniques with modern digital tools to create illustrations that feel both timeless and contemporary.
+            </p>
 
-                    <section>
-                        <h2>My Approach</h2>
-                        <p class="bio">
-                            I believe that every illustration tells a story. Whether it's a character study, a fantastical landscape, or a conceptual piece, I approach each project with intention and creativity. I focus on creating work that resonates emotionally with viewers and stands out for its originality and craftsmanship.
-                        </p>
-                    </section>
-                </div>
-            </div>
-
-            <!-- Skills section below (full width) -->
-            <section style="margin-top: 4rem;">
-                <h2>Skills & Expertise</h2>
-                <div class="skills">
-                    <div class="skill-item">
-                        <h3>Digital Illustration</h3>
-                        <p>Creating stunning digital artwork using industry-leading software and techniques.</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Character Design</h3>
-                        <p>Developing unique and compelling characters for various projects and mediums.</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Concept Art</h3>
-                        <p>Visualizing ideas and concepts for games, films, and creative projects.</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Traditional Media</h3>
-                        <p>Working with watercolor, ink, pencil, and other traditional art forms.</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Scene Composition</h3>
-                        <p>Creating dynamic and engaging scenes with strong visual storytelling.</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Visual Storytelling</h3>
-                        <p>Crafting narratives through a series of illustrations and sequential art.</p>
-                    </div>
-                </div>
-            </section>
+            <!-- Landscape photo -->
+            <img src="images/fiamma-photo.jpg" alt="Fiamma's workspace" class="about-photo">
         </div>
     </main>
 

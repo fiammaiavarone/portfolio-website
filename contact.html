@@ -132,35 +132,29 @@
 
         .big-buttons {
             display: flex;
-            gap: 0.5rem;
+            gap: 0;
             justify-content: center;
             align-items: center;
             margin: 2rem 0;
             /* limit max width so buttons don't span full page */
-            max-width: 1250px;
+            max-width: 1300px;
             margin-left: auto;
             margin-right: auto;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-        }
-
-        /* Container for the 3 small buttons */
-        .big-buttons > .big-btn.small {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            flex-wrap: nowrap;
+            padding: 0;
         }
 
         /* Large button on the left */
         .big-btn.large {
-            width: 400px;
-            aspect-ratio: 400 / 300;
+            width: 550px;
+            height: 412px;
         }
 
         /* Smaller buttons on the right */
         .big-btn.small {
             width: 200px;
-            aspect-ratio: 200 / 150;
+            height: 150px;
+            margin-left: 0;
         }
 
         /* Default size (if no class specified) */
@@ -171,18 +165,17 @@
 
         .big-btn {
             position: relative;
-            flex: 0 0 auto;
+            flex-shrink: 0;
             border: 0;
             padding: 0;
+            margin: 0;
             cursor: pointer;
             overflow: hidden;
             background-color: transparent; /* remove grey */
             border-radius: 0; /* no rounded background */
             box-shadow: none; /* remove shadow */
             transition: none; /* no transform */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
         }
 
         /* First image layer */
@@ -235,81 +228,58 @@
 
         /* Contact Section */
         .contact-section {
-            max-width: 900px;
+            max-width: 800px;
             margin: 3rem auto 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        h1 {
-            font-size: 2.5rem;
+        /* Big red handwritten title */
+        .contact-title {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #E63946;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
             margin-bottom: 2rem;
             line-height: 1.2;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
         }
 
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
+        /* Contact info box */
+        .contact-info-box {
+            background-color: #f9f9f9;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .info-label {
+        .contact-email {
+            font-size: 1.3rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #666666;
+            color: #000000;
+            margin-bottom: 1rem;
         }
 
-        .info-value {
-            font-size: 1.1rem;
-            color: #000000;
-        }
-
-        .info-value a {
-            color: #000000;
+        .contact-email a {
+            color: #E63946;
             text-decoration: none;
-            border-bottom: 1px solid #000000;
+            border-bottom: 2px solid #E63946;
             transition: opacity 0.3s ease;
         }
 
-        .info-value a:hover {
-            opacity: 0.6;
+        .contact-email a:hover {
+            opacity: 0.7;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f9f9f9;
-            border-radius: 50%;
-            text-decoration: none;
-            color: #000000;
-            transition: background-color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .social-link:hover {
-            background-color: #e0e0e0;
+        .contact-description {
+            font-size: 1.05rem;
+            color: #555555;
+            line-height: 1.6;
         }
 
         /* Contact Form */
@@ -317,62 +287,72 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            text-align: left;
         }
 
         label {
             font-weight: 600;
             font-size: 0.95rem;
             color: #000000;
+            margin-left: 0.5rem;
         }
 
         input,
         textarea {
-            padding: 0.75rem;
+            padding: 1rem 1.25rem;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 1rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            background-color: #ffffff;
+            border: 2px solid #e8e8e8;
+            border-radius: 20px;
+            background-color: #FFF5F0;
             color: #000000;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #000000;
-            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+            border-color: #E63946;
+            box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);
         }
 
         textarea {
             resize: vertical;
             min-height: 150px;
+            border-radius: 20px;
         }
 
-        button {
-            padding: 0.75rem 1.5rem;
-            background-color: #000000;
+        button[type="submit"] {
+            padding: 1rem 2rem;
+            background-color: #E63946;
             color: #ffffff;
             border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.5rem;
         }
 
-        button:hover {
-            opacity: 0.8;
+        button[type="submit"]:hover {
+            background-color: #D62839;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
         }
 
-        button:active {
-            opacity: 0.7;
+        button[type="submit"]:active {
+            transform: translateY(0);
         }
 
         .form-message {
@@ -430,13 +410,21 @@
                 display: flex;
             }
 
-            h1 {
-                font-size: 2rem;
+            .contact-title {
+                font-size: 2.5rem;
             }
 
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .contact-info-box {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .contact-email {
+                font-size: 1.1rem;
+            }
+
+            .contact-description {
+                font-size: 0.95rem;
             }
 
             main {
@@ -458,12 +446,12 @@
         <!-- Big buttons section -->
         <section class="big-buttons">
             <!-- Large button on the left -->
-            <button class="big-btn large" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
-                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
+            <button class="big-btn large" data-first="images/Fiamma_Logo.svg" data-second="images/Fiamma_Logo_Click.svg" data-link="index.html" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Fiamma_Logo.svg" />
                 </svg>
-                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
+                <svg class="second" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Fiamma_Logo_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Fiamma_Logo_Click.svg" />
                 </svg>
             </button>
 
@@ -496,43 +484,21 @@
 
         <!-- Contact content -->
         <div class="contact-section">
-            <h1>Get in Touch</h1>
+            <!-- Big red handwritten title -->
+            <h1 class="contact-title">Let's Work Together</h1>
 
-            <div class="contact-container">
-            <!-- Contact Information -->
-            <div class="contact-info">
-                <div class="info-item">
-                    <span class="info-label">Email</span>
-                    <span class="info-value">
-                        <a href="mailto:fiamma.iavarone@gmail.com">fiamma.iavarone@gmail.com</a>
-                    </span>
+            <!-- Contact info box with email and description -->
+            <div class="contact-info-box">
+                <div class="contact-email">
+                    <a href="mailto:fiamma.iavarone@gmail.com">fiamma.iavarone@gmail.com</a>
                 </div>
-
-                <div class="info-item">
-                    <span class="info-label">Phone</span>
-                    <span class="info-value">
-                        <a href="tel:+15551234567">+1 (555) 123-4567</a>
-                    </span>
-                </div>
-
-                <div class="info-item">
-                    <span class="info-label">Follow Me</span>
-                    <div class="social-links">
-                        <a href="https://instagram.com/fiamma.iavarone" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
-                            IG
-                        </a>
-                        <a href="https://behance.net" class="social-link" target="_blank" rel="noopener noreferrer" title="Behance">
-                            Be
-                        </a>
-                        <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer" title="Twitter">
-                            𝕏
-                        </a>
-                    </div>
-                </div>
+                <p class="contact-description">
+                    I'm always excited to collaborate on new projects! Whether you're looking for illustrations, character design, or any creative work, feel free to reach out. I'd love to hear about your ideas and see how we can bring them to life together.
+                </p>
             </div>
 
             <!-- Contact Form -->
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xvgyzrwk" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -540,12 +506,12 @@
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="_replyto" required>
                 </div>
 
                 <div class="form-group">
                     <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
+                    <input type="text" id="subject" name="_subject" required>
                 </div>
 
                 <div class="form-group">
@@ -583,14 +549,14 @@
             });
         }
 
-        // Contact form handling
+        // Contact form handling with Formspree
         const contactForm = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Get form values
+            // Get form values for validation
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const subject = document.getElementById('subject').value.trim();
@@ -613,18 +579,45 @@
                 return;
             }
 
-            // Success message
-            formMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
-            formMessage.classList.remove('error');
-            formMessage.classList.add('success');
+            // Submit form via Formspree
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-            // Reset form
-            contactForm.reset();
+                if (response.ok) {
+                    // Success message
+                    formMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+                    formMessage.classList.remove('error');
+                    formMessage.classList.add('success');
 
-            // Clear message after 5 seconds
-            setTimeout(() => {
+                    // Reset form
+                    contactForm.reset();
+
+                    // Clear message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.classList.remove('success');
+                    }, 5000);
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        formMessage.textContent = data.errors.map(error => error.message).join(', ');
+                    } else {
+                        formMessage.textContent = 'Oops! There was a problem submitting your form.';
+                    }
+                    formMessage.classList.remove('success');
+                    formMessage.classList.add('error');
+                }
+            } catch (error) {
+                formMessage.textContent = 'Oops! There was a problem submitting your form.';
                 formMessage.classList.remove('success');
-            }, 5000);
+                formMessage.classList.add('error');
+            }
         });
     </script>
         <script>
