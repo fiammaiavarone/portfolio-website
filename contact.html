@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Fiamma Iavarone</title>
+    <link rel="icon" type="image/svg+xml" href="images/Icona_Procione.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* Header banner */
+        header {
+            position: relative;
+            background: transparent;
+            padding: 0;
+            z-index: 100;
+        }
+
+        /* Banner image with centered title */
+        .banner {
+            width: 100%;
+            height: 320px;
+            background-image: url('images/Gatto_SfondoBianco.png');
+            background-size: cover;
+            background-position: center center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
+            pointer-events: none;
+        }
+
+        .site-title {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            font-weight: 700;
+            font-size: clamp(24px, 4vw, 48px);
+            line-height: 1;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            padding: 0.25rem 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #000000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        nav a.active {
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #000000;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Banner and big-buttons styles copied from index.html */
+        .banner {
+            width: 100%;
+            height: 320px;
+            background-image: url('images/Gatto_SfondoBianco.png');
+            background-size: cover;
+            background-position: center center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
+            pointer-events: none;
+        }
+
+        .site-title {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            font-weight: 700;
+            font-size: clamp(24px, 4vw, 48px);
+            line-height: 1;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            padding: 0.25rem 1rem;
+        }
+
+        .big-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin: 2.5rem 0;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .big-btn {
+            position: relative;
+            flex: 0 0 auto;
+            width: 300px;
+            aspect-ratio: 300 / 220;
+            border: 0;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            transition: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .big-btn svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+        .big-btn svg.first { z-index: 1; opacity: 1; transition: opacity 0.35s ease; }
+        .big-btn svg.second { z-index: 2; opacity: 0; transition: opacity 0.3s ease; }
+        .big-btn:hover svg.second { opacity: 1; }
+        .big-btn:hover svg.first { opacity: 0; }
+
+        @media (max-width: 900px) {
+            .big-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+                margin: 1.25rem 0;
+                max-width: 90%;
+                padding: 0 1rem;
+            }
+            .big-btn { width: 100%; height: auto; aspect-ratio: 300 / 220; min-height: 160px; }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666666;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: #000000;
+        }
+
+        .info-value a {
+            color: #000000;
+            text-decoration: none;
+            border-bottom: 1px solid #000000;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-value a:hover {
+            opacity: 0.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #000000;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .social-link:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #000000;
+        }
+
+        input,
+        textarea {
+            padding: 0.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #000000;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #000000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button:active {
+            opacity: 0.7;
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #f0f9f4;
+            color: #1a5f3f;
+            border: 1px solid #c0e8d8;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: #fef5f5;
+            color: #8b2e2e;
+            border: 1px solid #e0b0b0;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: #ffffff;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                z-index: 99;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header banner -->
+    <header>
+        <div class="banner">
+            <h1 class="site-title">Fiamma's cute Portfolio</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Big buttons section -->
+        <section class="big-buttons">
+            <button class="big-btn" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- Contact content -->
+        <div class="contact-section">
+            <h1>Get in Touch</h1>
+
+            <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-item">
+                    <span class="info-label">Email</span>
+                    <span class="info-value">
+                        <a href="mailto:fiamma.iavarone@gmail.com">fiamma.iavarone@gmail.com</a>
+                    </span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Phone</span>
+                    <span class="info-value">
+                        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                    </span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Follow Me</span>
+                    <div class="social-links">
+                        <a href="https://instagram.com/fiamma.iavarone" class="social-link" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            IG
+                        </a>
+                        <a href="https://behance.net" class="social-link" target="_blank" rel="noopener noreferrer" title="Behance">
+                            Be
+                        </a>
+                        <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer" title="Twitter">
+                            𝕏
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit">Send Message</button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Illustration Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle (guarded)
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when link is clicked
+            const navLinks = navMenu.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Contact form handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Validation
+            if (!name || !email || !subject || !message) {
+                formMessage.textContent = 'Please fill in all fields.';
+                formMessage.classList.remove('success');
+                formMessage.classList.add('error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.classList.remove('success');
+                formMessage.classList.add('error');
+                return;
+            }
+
+            // Success message
+            formMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+            formMessage.classList.remove('error');
+            formMessage.classList.add('success');
+
+            // Reset form
+            contactForm.reset();
+
+            // Clear message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.remove('success');
+            }, 5000);
+        });
+    </script>
+        <script>
+            // Big buttons initialization (copied from index.html)
+            (function(){
+                const buttons = document.querySelectorAll('.big-btn');
+
+                buttons.forEach(btn => {
+                        const first = btn.dataset.first;
+                        const second = btn.dataset.second;
+
+                        // set SVG <image> hrefs
+                        const svgFirstImage = btn.querySelector('svg.first image');
+                        const svgSecondImage = btn.querySelector('svg.second image');
+                        if (svgFirstImage && first) {
+                            try { svgFirstImage.setAttribute('href', first); } catch (e) { }
+                            svgFirstImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', first);
+                        }
+                        if (svgSecondImage && second) {
+                            try { svgSecondImage.setAttribute('href', second); } catch (e) { }
+                            svgSecondImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', second);
+                        }
+
+                        // click navigates (if link provided)
+                        btn.addEventListener('click', () => {
+                            const link = btn.dataset.link;
+                            if (link) window.location.href = link;
+                        });
+                });
+            })();
+        </script>
+</body>
+</html>

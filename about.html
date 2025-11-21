@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Fiamma Iavarone</title>
+    <link rel="icon" type="image/svg+xml" href="images/Icona_Procione.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* Header banner */
+        header {
+            position: relative;
+            background: transparent;
+            padding: 0;
+            z-index: 100;
+        }
+
+        /* Banner image with centered title */
+        .banner {
+            width: 100%;
+            height: 320px;
+            background-image: url('images/Gatto_SfondoBianco.png');
+            background-size: cover;
+            background-position: center center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
+            pointer-events: none;
+        }
+
+        .site-title {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            font-weight: 700;
+            font-size: clamp(24px, 4vw, 48px);
+            line-height: 1;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            padding: 0.25rem 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #000000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        nav a.active {
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #000000;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Big buttons (replaceable with images) */
+        .big-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin: 2.5rem 0;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .big-btn {
+            position: relative;
+            flex: 0 0 auto;
+            width: 300px;
+            aspect-ratio: 300 / 220;
+            border: 0;
+            padding: 0;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            transition: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* First image layer */
+        /* Use stacked inline SVGs inside each button for precise aspect-ratio control */
+        .big-btn svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+        }
+
+        .big-btn svg image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .big-btn svg.first {
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.35s ease;
+        }
+
+        .big-btn svg.second {
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* simple crossfade on hover for stacked svgs */
+        .big-btn:hover svg.second {
+            opacity: 1;
+        }
+        /* hide the previous image when showing the second to avoid overlap */
+        .big-btn:hover svg.first {
+            opacity: 0;
+        }
+
+        @media (max-width: 900px) {
+            .big-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+                margin: 1.25rem 0;
+                max-width: 90%;
+                padding: 0 1rem;
+            }
+            .big-btn { width: 100%; height: auto; aspect-ratio: 300 / 220; min-height: 160px; }
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        /* Two-column layout for about content */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .about-section-content {
+            margin-bottom: 3rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333333;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .skill-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item p {
+            font-size: 0.9rem;
+            color: #666666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: #ffffff;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                z-index: 99;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            /* Stack columns on mobile */
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header banner -->
+    <header>
+        <div class="banner">
+            <h1 class="site-title">Fiamma's cute Portfolio</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Big buttons section -->
+        <section class="big-buttons">
+            <button class="big-btn" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- About content with two-column layout -->
+        <div class="about-section">
+            <div class="about-container">
+                <!-- Left column: Portrait image -->
+                <div class="about-image-wrapper">
+                    <img src="images/MeetTheArtist.jpg" alt="Portrait of Fiamma" class="about-image">
+                </div>
+
+                <!-- Right column: About text -->
+                <div class="about-content">
+                    <section>
+                        <h2>My Story</h2>
+                        <p class="bio">
+                            I'm a passionate illustrator dedicated to creating compelling visual narratives. With expertise in both digital and traditional mediums, I bring stories to life through thoughtful composition, vibrant color, and engaging character design.
+                        </p>
+                        <p class="bio">
+                            My journey in illustration began with a love for storytelling and visual communication. Over the years, I've developed a unique style that blends traditional artistic techniques with modern digital tools, allowing me to create work that feels both timeless and contemporary.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>My Approach</h2>
+                        <p class="bio">
+                            I believe that every illustration tells a story. Whether it's a character study, a fantastical landscape, or a conceptual piece, I approach each project with intention and creativity. I focus on creating work that resonates emotionally with viewers and stands out for its originality and craftsmanship.
+                        </p>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Skills section below (full width) -->
+            <section style="margin-top: 4rem;">
+                <h2>Skills & Expertise</h2>
+                <div class="skills">
+                    <div class="skill-item">
+                        <h3>Digital Illustration</h3>
+                        <p>Creating stunning digital artwork using industry-leading software and techniques.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Character Design</h3>
+                        <p>Developing unique and compelling characters for various projects and mediums.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Concept Art</h3>
+                        <p>Visualizing ideas and concepts for games, films, and creative projects.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Traditional Media</h3>
+                        <p>Working with watercolor, ink, pencil, and other traditional art forms.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Scene Composition</h3>
+                        <p>Creating dynamic and engaging scenes with strong visual storytelling.</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Visual Storytelling</h3>
+                        <p>Crafting narratives through a series of illustrations and sequential art.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Illustration Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Big buttons initialization
+        (function(){
+            const buttons = document.querySelectorAll('.big-btn');
+
+            buttons.forEach(btn => {
+                const first = btn.dataset.first;
+                const second = btn.dataset.second;
+
+                const svgFirstImage = btn.querySelector('svg.first image');
+                const svgSecondImage = btn.querySelector('svg.second image');
+                
+                if (svgFirstImage && first) {
+                    try { svgFirstImage.setAttribute('href', first); } catch (e) { }
+                    svgFirstImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', first);
+                }
+                if (svgSecondImage && second) {
+                    try { svgSecondImage.setAttribute('href', second); } catch (e) { }
+                    svgSecondImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', second);
+                }
+
+                btn.addEventListener('click', () => {
+                    const link = btn.dataset.link;
+                    if (link) window.location.href = link;
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
