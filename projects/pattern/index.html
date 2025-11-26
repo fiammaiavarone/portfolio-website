@@ -126,12 +126,13 @@
             box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
         }
 
-        /* Image Gallery */
+        /* Image Gallery - 3 columns: Detail, Overview, Mockup */
         .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 2rem;
+            align-items: center;
         }
 
         .gallery-item {
@@ -149,6 +150,14 @@
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        .gallery-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #999999;
+            margin-top: 0.5rem;
+            font-style: italic;
         }
 
         /* Lightbox */
@@ -224,10 +233,20 @@
             margin-top: 4rem;
         }
 
+        @media (max-width: 1024px) {
+            .image-gallery { 
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem; 
+            }
+        }
+
         @media (max-width: 768px) {
             main { padding: 1rem; }
             .project-title { font-size: 2rem; }
-            .image-gallery { grid-template-columns: 1fr; gap: 1.5rem; }
+            .image-gallery { 
+                grid-template-columns: 1fr; 
+                gap: 1.5rem; 
+            }
         }
     </style>
 </head>
@@ -286,29 +305,39 @@
             <h1 class="project-title">Pattern Designs</h1>
             <p class="project-description">
                 A collection of vibrant pattern designs inspired by nature and whimsy. 
-                These patterns showcase versatility across different applications and mockups.
+                Each row showcases the complete design process: from intricate details to full pattern overview, 
+                and finally, real-world product mockups demonstrating versatility and application.
             </p>
             <a href="/projects" class="back-button">← Back to Projects</a>
 
             <!-- Image Gallery -->
             <div class="image-gallery">
+                <!-- Row 1: Nature Pattern - Detail, Overview, Mockup -->
                 <div class="gallery-item" data-full-image="../../images/project-images/Pattern/Pattern_Nature.jpg">
-                    <img src="../../images/project-images/Pattern/thumb_Pattern_Nature.jpg" alt="Nature Pattern">
+                    <img src="../../images/project-images/Pattern/thumb_Pattern_Nature.jpg" alt="Nature Pattern - Detail">
+                    <div class="gallery-caption">Nature Pattern - Detail</div>
                 </div>
                 <div class="gallery-item" data-full-image="../../images/project-images/Pattern/Pattern_Nature2jpg.jpg">
-                    <img src="../../images/project-images/Pattern/thumb_Pattern_Nature2jpg.jpg" alt="Nature Pattern 2">
-                </div>
-                <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern.jpg">
-                    <img src="../../images/project-images/Pattern/thumb_pattern.jpg" alt="Pattern Design">
-                </div>
-                <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern-copia.jpg">
-                    <img src="../../images/project-images/Pattern/thumb_pattern-copia.jpg" alt="Pattern Variation">
-                </div>
-                <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern_christmas_paper_mockup copia.jpg">
-                    <img src="../../images/project-images/Pattern/thumb_pattern_christmas_paper_mockup copia.jpg" alt="Christmas Paper Mockup">
+                    <img src="../../images/project-images/Pattern/thumb_Pattern_Nature2jpg.jpg" alt="Nature Pattern - Overview">
+                    <div class="gallery-caption">Nature Pattern - Overview</div>
                 </div>
                 <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern_nature_mockup_tappeto copia.jpg">
-                    <img src="../../images/project-images/Pattern/thumb_pattern_nature_mockup_tappeto copia.jpg" alt="Carpet Mockup">
+                    <img src="../../images/project-images/Pattern/thumb_pattern_nature_mockup_tappeto copia.jpg" alt="Nature Pattern - Carpet Mockup">
+                    <div class="gallery-caption">Rug Mockup</div>
+                </div>
+                
+                <!-- Row 2: Christmas Pattern - Detail, Overview, Mockup -->
+                <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern.jpg">
+                    <img src="../../images/project-images/Pattern/thumb_pattern.jpg" alt="Christmas Pattern - Detail">
+                    <div class="gallery-caption">Christmas Pattern - Detail</div>
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern-copia.jpg">
+                    <img src="../../images/project-images/Pattern/thumb_pattern-copia.jpg" alt="Christmas Pattern - Overview">
+                    <div class="gallery-caption">Christmas Pattern - Overview</div>
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Pattern/pattern_christmas_paper_mockup copia.jpg">
+                    <img src="../../images/project-images/Pattern/thumb_pattern_christmas_paper_mockup copia.jpg" alt="Christmas Pattern - Paper Mockup">
+                    <div class="gallery-caption">Wrapping Paper Mockup</div>
                 </div>
             </div>
         </div>

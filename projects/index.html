@@ -134,89 +134,77 @@
         .projects-section {
             max-width: 1200px;
             margin: 2rem auto;
-            text-align: center;
         }
 
-        .projects-title {
-            font-family: 'Gaegu', cursive;
-            font-size: clamp(24px, 4vw, 48px);
-            font-weight: 700;
-            color: #E63946;
-            margin-bottom: 3rem;
-            line-height: 1.2;
-        }
-
-        /* Projects List - Row Layout */
+        /* Projects Grid - Square tiles */
         .projects-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .project-card {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* Creates square aspect ratio */
+            overflow: hidden;
+            border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
 
         .project-card:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
         }
 
         .project-card-image {
-            flex: 0 0 50%;
-            overflow: hidden;
-            border-radius: 8px;
-            background-color: #f9f9f9;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .project-card img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            object-fit: contain;
         }
 
         .project-card-title {
-            flex: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Gaegu', cursive;
             font-size: 2.5rem;
-            font-weight: 600;
-            color: #E63946;
-            text-align: left;
-            padding: 0 1rem;
+            font-weight: 700;
+            color: white;
+            background-color: rgba(230, 57, 70, 0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 1rem;
         }
 
-        /* Alternate layout - image on right for even items */
-        .project-card:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .project-card:nth-child(even) .project-card-title {
-            text-align: right;
+        .project-card:hover .project-card-title {
+            opacity: 1;
         }
 
         @media (max-width: 768px) {
-            .project-card {
-                flex-direction: column !important;
-                gap: 1rem;
-            }
-
-            .project-card-image {
-                flex: 0 0 auto;
-                width: 100%;
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
             }
 
             .project-card-title {
-                text-align: center !important;
                 font-size: 2rem;
-                padding: 0;
             }
         }
 
@@ -304,8 +292,6 @@
 
         <!-- Projects Section -->
         <div class="projects-section">
-            <h1 class="projects-title">My Projects</h1>
-
             <!-- Projects Grid -->
             <div class="projects-grid">
                 <div class="project-card" onclick="window.location.href='/projects/badgequest'">
