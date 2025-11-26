@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Fiamma Iavarone</title>
-    <link rel="icon" type="image/svg+xml" href="images/Icona_Procione.svg">
-    <link rel="preconnect" href="https://
-    s.googleapis.com">
+    <link rel="icon" type="image/svg+xml" href="images/icons/Icona_Procione.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,7 +16,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             background-color: #ffffff;
             color: #000000;
             line-height: 1.6;
@@ -51,7 +50,6 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
             pointer-events: none;
         }
-
         .site-title {
             position: relative;
             color: #fff;
@@ -62,7 +60,6 @@
             text-shadow: 0 6px 18px rgba(0,0,0,0.6);
             padding: 0.25rem 1rem;
         }
-
         .logo {
             font-size: 1.5rem;
             font-weight: 600;
@@ -121,7 +118,7 @@
         main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0.5rem 2rem 2rem;
             animation: fadeIn 0.5s ease;
         }
 
@@ -139,7 +136,7 @@
             gap: 0;
             justify-content: center;
             align-items: center;
-            margin: 2rem 0;
+            margin: 0.5rem 0 0.5rem;
             /* limit max width so buttons don't span full page */
             max-width: 1300px;
             margin-left: auto;
@@ -150,8 +147,8 @@
 
         /* Large button on the left */
         .big-btn.large {
-            width: 550px;
-            height: 412px;
+            width: 300px;
+            height: 200px;
         }
 
         /* Smaller buttons on the right */
@@ -232,8 +229,8 @@
 
         /* Contact Section */
         .contact-section {
-            max-width: 800px;
-            margin: 3rem auto 0;
+            max-width: 1200px;
+            margin: 2rem auto 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -243,27 +240,53 @@
         /* Big red handwritten title */
         .contact-title {
             font-family: 'Gaegu', cursive;
-            font-size: 3.5rem;
+            font-size: clamp(24px, 4vw, 48px);
             font-weight: 700;
             color: #E63946;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.02em;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             line-height: 1.2;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
         }
 
         /* Contact info box */
         .contact-info-box {
-            background-color: #f9f9f9;
-            border-radius: 16px;
-            padding: 2rem 2.5rem;
+            background-color: transparent;
+            border-radius: 0;
+            padding: 0;
             margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        /* Two column layout for image and form */
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .contact-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-form-wrapper {
+            flex: 1;
             max-width: 600px;
         }
 
         .contact-email {
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             font-weight: 600;
             color: #000000;
             margin-bottom: 1rem;
@@ -272,7 +295,6 @@
         .contact-email a {
             color: #E63946;
             text-decoration: none;
-            border-bottom: 2px solid #E63946;
             transition: opacity 0.3s ease;
         }
 
@@ -281,9 +303,10 @@
         }
 
         .contact-description {
-            font-size: 1.05rem;
+            font-size: 1.3rem;
             color: #555555;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
         /* Contact Form */
@@ -304,7 +327,7 @@
 
         label {
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1.2rem;
             color: #000000;
             margin-left: 0.5rem;
         }
@@ -312,8 +335,8 @@
         input,
         textarea {
             padding: 1rem 1.25rem;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
             border: 2px solid #e8e8e8;
             border-radius: 20px;
             background-color: #FFF5F0;
@@ -419,7 +442,7 @@
             }
 
             .contact-info-box {
-                padding: 1.5rem;
+                padding: 0;
                 margin-bottom: 2rem;
             }
 
@@ -429,6 +452,16 @@
 
             .contact-description {
                 font-size: 0.95rem;
+            }
+
+            .contact-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-image,
+            .contact-form-wrapper {
+                max-width: 100%;
             }
 
             main {
@@ -450,7 +483,7 @@
         <!-- Big buttons section -->
         <section class="big-buttons">
             <!-- Large button on the left -->
-            <button class="big-btn large" data-first="images/Fiamma_Logo.svg" data-second="images/Fiamma_Logo_Click.svg" data-link="index.html" aria-label="Portfolio">
+            <button class="big-btn large" data-first="images/icons/Fiamma_Logo.svg" data-second="images/icons/Fiamma_Logo_Click.svg" data-link="portfolio.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Fiamma_Logo.svg" />
                 </svg>
@@ -460,28 +493,28 @@
             </button>
 
             <!-- Small buttons on the right -->
-            <button class="big-btn small" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
+            <button class="big-btn small" data-first="images/icons/Icona_Penna.svg" data-second="images/icons/Icona_Penna_Click.svg" data-link="portfolio.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
+                    <image href="images/icons/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Penna.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
+                    <image href="images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Penna_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn small" data-first="images/Icona_Procione.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+            <button class="big-btn small" data-first="images/icons/Icona_Procione.svg" data-second="images/icons/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione.svg" />
+                    <image href="images/icons/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Procione.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                    <image href="images/icons/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Procione_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn small" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+            <button class="big-btn small" data-first="images/icons/Icona_Contatti_Click.svg" data-second="images/icons/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                    <image href="images/icons/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Contatti_Click.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
+                    <image href="images/icons/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Contatti_Click.svg" />
                 </svg>
             </button>
         </section>
@@ -494,44 +527,54 @@
             <!-- Contact info box with email and description -->
             <div class="contact-info-box">
                 <p class="contact-description">
-                    If you're interested in collaborating with me, commissioning a piece or just want to say hello, I'd love to hear from you. Fill out the form or email me directly at fiammaiavarone@gmail.com 
+                    If you're interested in collaborating with me, commissioning a piece or just want to say hello, I'd love to hear from you. Fill out the form or email me directly at: 
                 </p>
                 <div class="contact-email">
-                    <a href="mailto:fiamma.iavarone@gmail.com">fiamma.iavarone@gmail.com</a>
+                    <a href="mailto:info@fiammaiavarone.com">info@fiammaiavarone.com</a>
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xvgyzrwk" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+            <!-- Two column layout: Image on left, Form on right -->
+            <div class="contact-content">
+                <!-- Left side: Image -->
+                <div class="contact-image">
+                    <img src="images/icons/MeetTheArtist.jpg" alt="Meet the Artist - Fiamma">
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="_replyto" required>
-                </div>
+                <!-- Right side: Form -->
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xvgyzrwk" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
 
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="_subject" required>
-                </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="_replyto" required>
+                        </div>
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="_subject" required>
+                        </div>
 
-                <button type="submit">Send Message</button>
-                <div class="form-message" id="formMessage"></div>
-            </form>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Illustration Portfolio. All rights reserved.</p>
+        <p>&copy;2025 Fiamma Iavarone - Illustration Portfolio. All rights reserved.</p>
     </footer>
 
     <script>

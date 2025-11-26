@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Fiamma Iavarone</title>
-    <link rel="icon" type="image/svg+xml" href="images/Icona_Procione_Click.svg">
+    <link rel="icon" type="image/svg+xml" href="images/icons/Icona_Procione_Click.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             background-color: #ffffff;
             color: #000000;
             line-height: 1.6;
@@ -120,7 +120,7 @@
         main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0.5rem 2rem 2rem;
             animation: fadeIn 0.5s ease;
         }
 
@@ -139,7 +139,7 @@
             gap: 0;
             justify-content: center;
             align-items: center;
-            margin: 2rem 0;
+            margin: 0.5rem 0 0.5rem;
             max-width: 1300px;
             margin-left: auto;
             margin-right: auto;
@@ -149,8 +149,8 @@
 
         /* Large button on the left */
         .big-btn.large {
-            width: 550px;
-            height: 412px;
+            width: 300px;
+            height: 200px;
         }
 
         /* Smaller buttons on the right */
@@ -226,28 +226,46 @@
         /* About Section */
         .about-section {
             max-width: 900px;
-            margin: 3rem auto 0;
+            margin: 0.5rem auto 0;
             text-align: center;
         }
 
         /* Handwritten title */
         .handwritten-title {
             font-family: 'Gaegu', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 2rem;
-            color: #000000;
+            color: #E63946;
             font-weight: 700;
         }
 
         /* Description text */
         .description {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             line-height: 1.8;
             color: #333333;
             margin-bottom: 3rem;
-            max-width: 700px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
+            white-space: pre-line;
+        }
+
+        /* Contact email styling */
+        .contact-email {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email a {
+            color: #E63946;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-email a:hover {
+            opacity: 0.7;
         }
 
         /* Landscape photo */
@@ -321,7 +339,7 @@
         <!-- Big buttons section -->
         <section class="big-buttons">
             <!-- Large button on the left -->
-            <button class="big-btn large" data-first="images/Fiamma_Logo.svg" data-second="images/Fiamma_Logo_Click.svg" data-link="index.html" aria-label="Portfolio">
+            <button class="big-btn large" data-first="images/icons/Fiamma_Logo.svg" data-second="images/icons/Fiamma_Logo_Click.svg" data-link="portfolio.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <image href="images/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Fiamma_Logo.svg" />
                 </svg>
@@ -331,28 +349,28 @@
             </button>
 
             <!-- Small buttons on the right -->
-            <button class="big-btn small" data-first="images/Icona_Penna.svg" data-second="images/Icona_Penna_Click.svg" data-link="index.html" aria-label="Portfolio">
+            <button class="big-btn small" data-first="images/icons/Icona_Penna.svg" data-second="images/icons/Icona_Penna_Click.svg" data-link="portfolio.html" aria-label="Portfolio">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna.svg" />
+                    <image href="images/icons/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Penna.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Penna_Click.svg" />
+                    <image href="images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Penna_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn small" data-first="images/Icona_Procione_Click.svg" data-second="images/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+            <button class="big-btn small" data-first="images/icons/Icona_Procione_Click.svg" data-second="images/icons/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                    <image href="images/icons/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Procione_Click.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Procione_Click.svg" />
+                    <image href="images/icons/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Procione_Click.svg" />
                 </svg>
             </button>
-            <button class="big-btn small" data-first="images/Icona_Contatti.svg" data-second="images/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+            <button class="big-btn small" data-first="images/icons/Icona_Contatti.svg" data-second="images/icons/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
                 <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti.svg" />
+                    <image href="images/icons/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Contatti.svg" />
                 </svg>
                 <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <image href="images/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/Icona_Contatti_Click.svg" />
+                    <image href="images/icons/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Contatti_Click.svg" />
                 </svg>
             </button>
         </section>
@@ -360,21 +378,29 @@
         <!-- About content -->
         <div class="about-section">
             <!-- Handwritten title -->
-            <h1 class="handwritten-title">Hi I'm Fiamma</h1>
+            <h1 class="handwritten-title">Hi I'm Fiamma!</h1>
 
             <!-- Description text -->
-            <p class="description">
-                I'm a passionate illustrator dedicated to creating compelling visual narratives. With expertise in both digital and traditional mediums, I bring stories to life through thoughtful composition, vibrant color, and engaging character design. My work blends traditional artistic techniques with modern digital tools to create illustrations that feel both timeless and contemporary.
+            <p class="description">I am an illustrator and character designer from Rome who likes to experiment with vibrant colors and feelings of joy, happiness, and positive vibes.
+
+                I love creating in all its forms, and in fact, in addition to drawing, I enjoy embroidering, sewing, modeling polymer clay, and I am trying to learn how 3D works. In the past, I have also worked with metal and done cake design! I really LOVE creating with my hands.
+
+                In my spare time I like to visit small Italian villages, read books, and, above all, play role-playing games, which are one of my main inspirations for drawing!
+
+                If you’d like to work with me, just drop me a line:
             </p>
+            <div class="contact-email">
+                <a href="mailto:info@fiammaiavarone.com">info@fiammaiavarone.com</a>
+            </div>
 
             <!-- Landscape photo -->
-            <img src="images/fiamma-photo.jpg" alt="Fiamma's workspace" class="about-photo">
+            <img src="images/icons/Foto_AboutMe.jpg" alt="Fiamma's workspace" class="about-photo">
         </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Illustration Portfolio. All rights reserved.</p>
+        <p>&copy;2025 Fiamma Iavarone - Illustration Portfolio. All rights reserved.</p>
     </footer>
 
     <script>

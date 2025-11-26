@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiamma Iavarone</title>
+    <link rel="icon" type="image/svg+xml" href="images/icons/Icona_Procione.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Header banner */
+        header {
+            position: relative;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            height: 0;
+            z-index: 100;
+        }
+
+        /* Banner image with centered title */
+        .banner {
+            display: none;
+            width: 100%;
+            height: 320px;
+            background-image: url('images/Gatto_SfondoBianco.png');
+            background-size: cover;
+            background-position: center center;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
+            pointer-events: none;
+        }
+
+        .site-title {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            font-weight: 700;
+            font-size: clamp(24px, 4vw, 48px);
+            line-height: 1;
+            text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            padding: 0.25rem 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #000000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        nav a.active {
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #000000;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #000000;
+            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5px 32px 32px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+                /* Gallery Container - 3 columns with flexbox */
+        .gallery-container {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            padding: 0 16px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        /* Individual columns */
+        .gallery-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Responsive columns */
+        @media (max-width: 768px) {
+            .gallery-container {
+                gap: 12px;
+            }
+            .gallery-column:nth-child(3) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-container {
+                flex-direction: column;
+            }
+            .gallery-column:nth-child(2),
+            .gallery-column:nth-child(3) {
+                display: none;
+            }
+        }
+
+    /* Big buttons (replaceable with images) */
+        .big-buttons {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 5px;
+            /* limit max width so buttons don't span full page */
+            max-width: 1300px;
+            flex-wrap: nowrap;
+            padding: 0;
+            line-height: 0;
+        }
+
+        /* Large button on the left */
+        .big-btn.large {
+            width: 300px;
+            height: 200px;
+            line-height: 0;
+        }
+
+        /* Smaller buttons on the right */
+        .big-btn.small {
+            width: 200px;
+            height: 150px;
+            margin-left: 0;
+            line-height: 0;
+        }
+
+        /* Default size (if no class specified) */
+        .big-btn:not(.large):not(.small) {
+            width: 200px;
+            aspect-ratio: 200 / 150;
+        }
+
+        .big-btn {
+            position: relative;
+            flex-shrink: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: transparent; /* remove grey */
+            border-radius: 0; /* no rounded background */
+            box-shadow: none; /* remove shadow */
+            transition: none; /* no transform */
+            display: block;
+            line-height: 0;
+            font-size: 0;
+        }
+
+        /* First image layer */
+        /* Use stacked inline SVGs inside each button for precise aspect-ratio control */
+        .big-btn svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .big-btn svg image {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .big-btn svg.first {
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.35s ease;
+        }
+
+        .big-btn svg.second {
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* simple crossfade on hover for stacked svgs */
+        .big-btn:hover svg.second {
+            opacity: 1;
+        }
+        /* hide the previous image when showing the second to avoid overlap */
+        .big-btn:hover svg.first {
+            opacity: 0;
+        }
+
+        @media (max-width: 900px) {
+            .big-buttons {
+                flex-direction: column;
+                gap: 12px;
+                margin: 20px 0;
+                max-width: 90%;
+                padding: 0 16px;
+            }
+            .big-btn { width: 100%; height: auto; aspect-ratio: 300 / 220; min-height: 160px; }
+            .big-btn.large { width: 100%; aspect-ratio: 300 / 220; }
+            .big-btn.small { width: 100%; aspect-ratio: 300 / 220; }
+        }
+ 
+
+        /* Gallery Item */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+            width: 100%;
+            height: auto;
+            background-color: #fafafa;
+            margin-bottom: 12px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item img {
+            /* Fit the image without cropping - maintain aspect ratio */
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: center center;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.85);
+            z-index: 10000;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 95%; max-height: 95%; box-shadow: 0 10px 40px rgba(0,0,0,0.7); }
+
+        /* Placeholder for missing images */
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+    /* Image info overlay removed per user request */
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: #ffffff;
+                border-bottom: 1px solid #f0f0f0;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                z-index: 99;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+           /* riduci padding su mobile per non occupare troppo spazio */
+            header {
+                padding: 16px 0;
+            }
+
+            main {
+                padding: 16px;
+            }
+
+            .gallery-item {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header banner -->
+    <header>
+        <div class="banner">
+            <h1 class="site-title">Fiamma's cute Portfolio</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Big buttons section -->
+        <section class="big-buttons">
+            <!-- Large button on the left -->
+            <button class="big-btn large" data-first="images/icons/Fiamma_Logo.svg" data-second="images/icons/Fiamma_Logo_Click.svg" data-link="portfolio.html" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Fiamma_Logo.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Fiamma_Logo_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Fiamma_Logo_Click.svg" />
+                </svg>
+            </button>
+
+            <!-- Small buttons on the right -->
+            <button class="big-btn small" data-first="images/icons/Icona_Penna_Click.svg" data-second="images/icons/Icona_Penna_Click.svg" data-link="portfolio.html" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Penna_Click.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn small" data-first="images/icons/Icona_Procione.svg" data-second="images/icons/Icona_Procione_Click.svg" data-link="about.html" aria-label="About">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Procione.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+            <button class="big-btn small" data-first="images/icons/Icona_Contatti.svg" data-second="images/icons/Icona_Contatti_Click.svg" data-link="contact.html" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="images/icons/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="images/icons/Icona_Contatti_Click.svg" />
+                </svg>
+            </button>
+        </section>
+
+        <div class="gallery-container" id="gallery">
+            <!-- Gallery items generated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Fiamma Iavarone - Illustration Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ============================================
+        // GALLERY CONFIGURATION - EDIT YOUR IMAGES HERE
+        // ============================================
+        // All images from portfolio-images folder (excluding subfolders)
+        // column: 1 (left), 2 (center), 3 (right) - controls position in grid
+        const galleryItems = [
+            { 
+                title: "Pirats 1", 
+                category: "Illustration", 
+                width: 400, 
+                height: 500,
+                image: "images/portfolio-images/Pirats1.jpg",
+                thumb: "images/portfolio-images/thumb_Pirats1.jpg",
+                column: 1
+            },
+            { 
+                title: "Pirats 2", 
+                category: "Illustration", 
+                width: 400, 
+                height: 500,
+                image: "images/portfolio-images/Pirats2.jpg",
+                thumb: "images/portfolio-images/thumb_Pirats2.jpg",
+                column: 2
+            },
+            { 
+                title: "Pirats 3", 
+                category: "Illustration", 
+                width: 400, 
+                height: 500,
+                image: "images/portfolio-images/Pirats3.jpg",
+                thumb: "images/portfolio-images/thumb_Pirats3.jpg",
+                column: 3
+            },
+            { 
+                title: "Copertina BadgeQuest", 
+                category: "Illustration", 
+                width: 500, 
+                height: 400,
+                image: "images/portfolio-images/Copertina_BadgeQuestjpg.jpg",
+                thumb: "images/portfolio-images/thumb_Copertina_BadgeQuestjpg.jpg",
+                column: 1
+            },
+            { 
+                title: "Pattern", 
+                category: "Pattern", 
+                width: 500, 
+                height: 350,
+                image: "images/portfolio-images/pattern.jpg",
+                thumb: "images/portfolio-images/thumb_pattern.jpg",
+                column: 2
+            },
+            { 
+                title: "60", 
+                category: "Digital", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/60.jpg",
+                thumb: "images/portfolio-images/thumb_60.jpg",
+                column: 3
+            },
+            { 
+                title: "61", 
+                category: "Digital", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/61.jpg",
+                thumb: "images/portfolio-images/thumb_61.jpg",
+                column: 2
+            },
+            { 
+                title: "Pattern Nature", 
+                category: "Pattern", 
+                width: 500, 
+                height: 350,
+                image: "images/portfolio-images/Pattern_Nature.jpg",
+                thumb: "images/portfolio-images/thumb_Pattern_Nature.jpg",
+                column: 1
+            },
+            { 
+                title: "Redraw Girl", 
+                category: "Digital", 
+                width: 400, 
+                height: 500,
+                image: "images/portfolio-images/Redraw_Girl.jpg",
+                thumb: "images/portfolio-images/thumb_Redraw_Girl.jpg",
+                column: 1
+            },
+            { 
+                title: "TSNGC1", 
+                category: "Digital", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/tsngc1.jpg",
+                thumb: "images/portfolio-images/thumb_tsngc1.jpg",
+                column: 3
+            },
+            { 
+                title: "Dtiys Stefano Martinuz", 
+                category: "Digital", 
+                width: 400, 
+                height: 500,
+                image: "images/portfolio-images/Dtiys_StefanoMartinuz.jpg",
+                thumb: "images/portfolio-images/thumb_Dtiys_StefanoMartinuz.jpg",
+                column: 2
+            },
+            { 
+                title: "59", 
+                category: "Digital", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/59.jpg",
+                thumb: "images/portfolio-images/thumb_59.jpg",
+                column: 1
+            },
+            { 
+                title: "Gatti", 
+                category: "Character Design", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/Gatti.jpg",
+                thumb: "images/portfolio-images/thumb_Gatti.jpg",
+                column: 2
+            },
+            { 
+                title: "Cane Avventuriero", 
+                category: "Character Design", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/Cane Avventuriero.jpg",
+                thumb: "images/portfolio-images/thumb_Cane Avventuriero.jpg",
+                column: 2
+            },
+            { 
+                title: "Gatto", 
+                category: "Character Design", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/Gatto_SfondoBianco.png",
+                thumb: "images/portfolio-images/thumb_Gatto_SfondoBianco.jpg",
+                column: 3
+            },
+            { 
+                title: "Geko", 
+                category: "Character Design", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/Geko_SfondoBianco.png",
+                thumb: "images/portfolio-images/thumb_Geko_SfondoBianco.jpg",
+                column: 3
+            },
+            { 
+                title: "Procione", 
+                category: "Character Design", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/Procione_SfondoBianco.png",
+                thumb: "images/portfolio-images/thumb_Procione_SfondoBianco.jpg",
+                column: 3
+            },
+            { 
+                title: "Portfolio Page 1", 
+                category: "Illustration", 
+                width: 500, 
+                height: 400,
+                image: "images/portfolio-images/Portfolio Pag. 1.jpg",
+                thumb: "images/portfolio-images/thumb_Portfolio Pag. 1.jpg",
+                column: 3
+            },
+            { 
+                title: "No school", 
+                category: "Illustration", 
+                width: 500, 
+                height: 400,
+                image: "images/portfolio-images/No School, Just Play_Layout.jpg",
+                thumb: "images/portfolio-images/thumb_No School, Just Play_Layout.jpg",
+                column: 1
+            },
+            { 
+                title: "Nazionalita", 
+                category: "Character Design", 
+                width: 400, 
+                height: 400,
+                image: "images/portfolio-images/Nazionalità.jpg",
+                thumb: "images/portfolio-images/thumb_Nazionalità.jpg",
+                column: 1
+            }
+        
+        ];
+
+        // Generate gallery with 3 separate columns
+        function generateGallery() {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+
+            // Create 3 column containers
+            const column1 = document.createElement('div');
+            const column2 = document.createElement('div');
+            const column3 = document.createElement('div');
+            column1.className = 'gallery-column';
+            column2.className = 'gallery-column';
+            column3.className = 'gallery-column';
+
+            // Distribute items into their designated columns
+            galleryItems.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'gallery-item';
+                itemDiv.style.animationDelay = `${index * 0.05}s`;
+
+                // Create image or placeholder using low-res thumb first
+                let imageHTML = '';
+                if (item.image) {
+                    const thumbSrc = item.thumb || item.image;
+                    imageHTML = `<img data-thumb="${thumbSrc}" data-full="${item.image}" alt="${item.title}" loading="lazy" class="gallery-img" style="width:100%; height:auto; display:block; object-fit: cover;" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E">`;
+                } else {
+                    imageHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%;">${item.title}</div>`;
+                }
+
+                itemDiv.innerHTML = imageHTML;
+
+                // Add to the correct column based on item.column property
+                if (item.column === 1) {
+                    column1.appendChild(itemDiv);
+                } else if (item.column === 2) {
+                    column2.appendChild(itemDiv);
+                } else if (item.column === 3) {
+                    column3.appendChild(itemDiv);
+                } else {
+                    // Default to column 1 if no column specified
+                    column1.appendChild(itemDiv);
+                }
+            });
+
+            // Append all columns to gallery
+            gallery.appendChild(column1);
+            gallery.appendChild(column2);
+            gallery.appendChild(column3);
+        }
+
+        // Lazy-load thumb images and wire lightbox
+        function setupGalleryLazyAndLightbox() {
+            const imgs = document.querySelectorAll('.gallery-img');
+
+            const onClick = (e) => {
+                const full = e.currentTarget.dataset.full;
+                if (full) openLightbox(full);
+            };
+
+            imgs.forEach(img => img.addEventListener('click', onClick));
+
+            // IntersectionObserver to load thumbnails when visible
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const thumb = el.dataset.thumb;
+                            if (thumb) el.src = thumb;
+                            io.unobserve(el);
+                        }
+                    });
+                }, { rootMargin: '200px' });
+
+                imgs.forEach(img => io.observe(img));
+            } else {
+                // fallback: load all thumbs
+                imgs.forEach(img => { img.src = img.dataset.thumb || img.dataset.full; });
+            }
+        }
+
+        
+
+        // Initialize on page load
+        window.addEventListener('load', generateGallery);
+        window.addEventListener('load', () => {
+            // slight timeout to ensure DOM nodes exist
+            setTimeout(() => {
+                setupGalleryLazyAndLightbox();
+            }, 100);
+        });
+
+        // Simple resize handler - CSS Grid handles responsive layout automatically
+        window.addEventListener('resize', () => {
+            setupGalleryLazyAndLightbox();
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Close menu when link is clicked
+        const navLinks = document.querySelectorAll('#navMenu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // -----------------------------
+        // Big buttons script
+        // -----------------------------
+        (function(){
+            const buttons = document.querySelectorAll('.big-btn');
+
+            buttons.forEach(btn => {
+                    const first = btn.dataset.first;
+                    const second = btn.dataset.second;
+
+                    // set SVG <image> hrefs
+                    const svgFirstImage = btn.querySelector('svg.first image');
+                    const svgSecondImage = btn.querySelector('svg.second image');
+                    if (svgFirstImage && first) {
+                        try {
+                            svgFirstImage.setAttribute('href', first);
+                        } catch (e) {
+                            /* ignore */
+                        }
+                        svgFirstImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', first);
+                    }
+                    if (svgSecondImage && second) {
+                        try {
+                            svgSecondImage.setAttribute('href', second);
+                        } catch (e) {
+                            /* ignore */
+                        }
+                        svgSecondImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', second);
+                    }
+
+                    // click navigates (if link provided)
+                    btn.addEventListener('click', () => {
+                        const link = btn.dataset.link;
+                        if (link) window.location.href = link;
+                    });
+            });
+        })();
+        
+        /* Lightbox functionality */
+        function openLightbox(src) {
+            let lb = document.getElementById('lightbox');
+            if (!lb) return;
+            const img = lb.querySelector('img');
+            img.src = src;
+            lb.classList.add('open');
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            if (!lb) return;
+            lb.classList.remove('open');
+            const img = lb.querySelector('img');
+            img.src = '';
+        }
+    </script>
+    <!-- Lightbox modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img src="" alt="" />
+    </div>
+</body>
+</html>
