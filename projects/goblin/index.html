@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goblin Portfolio | Fiamma Iavarone</title>
+    <link rel="icon" type="image/svg+xml" href="../../images/icons/Icona_Procione.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5px 32px 32px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Big buttons */
+        .big-buttons {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 5px;
+            max-width: 1300px;
+            flex-wrap: nowrap;
+            padding: 0;
+            line-height: 0;
+        }
+
+        .big-btn.large { width: 225px; height: 150px; }
+        .big-btn.small { width: 200px; height: 150px; margin-left: 0; }
+
+        .big-btn {
+            position: relative;
+            flex-shrink: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            transition: none;
+            display: block;
+        }
+
+        .big-btn svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+        }
+
+        .big-btn svg image { width: 100%; height: 100%; }
+        .big-btn svg.first { z-index: 1; opacity: 1; transition: opacity 0.35s ease; }
+        .big-btn svg.second { z-index: 2; opacity: 0; transition: opacity 0.3s ease; }
+        .big-btn:hover svg.second { opacity: 1; }
+        .big-btn:hover svg.first { opacity: 0; }
+
+        @media (max-width: 900px) {
+            .big-buttons { flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; max-width: 90%; padding: 0 1rem; }
+            .big-btn { width: 100%; height: auto; aspect-ratio: 300 / 220; min-height: 160px; }
+        }
+
+        /* Project Details */
+        .project-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .project-title {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            color: #E63946;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 1.2rem;
+            color: #555555;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: #E63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #D62839;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #E63946;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            color: #E63946;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            main { padding: 1rem; }
+            .project-title { font-size: 2rem; }
+            .image-gallery { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Big buttons section -->
+        <section class="big-buttons">
+            <button class="big-btn large" data-first="../../images/icons/Fiamma_Logo.svg" data-second="../../images/icons/Fiamma_Logo_Click.svg" data-link="/" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Fiamma_Logo.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Fiamma_Logo_Click.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Fiamma_Logo_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../../images/icons/Icona_Penna.svg" data-second="../../images/icons/Icona_Penna_Click.svg" data-link="/" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Penna.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../../images/icons/Icona_Procione.svg" data-second="../../images/icons/Icona_Procione_Click.svg" data-link="/about" aria-label="About">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Procione.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../../images/icons/Icona_Contatti.svg" data-second="../../images/icons/Icona_Contatti_Click.svg" data-link="/contact" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Contatti_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../../images/icons/Icona_Penna_Click.svg" data-second="../../images/icons/Icona_Penna_Click.svg" data-link="/projects" aria-label="Projects">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Penna_Click.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet">
+                    <image href="../../images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" xlink:href="../../images/icons/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- Project Details -->
+        <div class="project-section">
+            <h1 class="project-title">Goblin Portfolio</h1>
+            <p class="project-description">
+                A complete portfolio showcasing goblin character designs and illustrations. 
+                Explore whimsical creatures through detailed artwork and creative storytelling.
+            </p>
+            <a href="/projects" class="back-button">← Back to Projects</a>
+
+            <!-- Image Gallery -->
+            <div class="image-gallery">
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Copertina.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Copertina.jpg" alt="Goblin Portfolio Cover">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 1.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 1.jpg" alt="Page 1">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 2.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 2.jpg" alt="Page 2">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 3.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 3.jpg" alt="Page 3">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 4.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 4.jpg" alt="Page 4">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 5.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 5.jpg" alt="Page 5">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 6.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 6.jpg" alt="Page 6">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 7.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 7.jpg" alt="Page 7">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 8.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 8.jpg" alt="Page 8">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 9.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 9.jpg" alt="Page 9">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 10.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 10.jpg" alt="Page 10">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 11.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 11.jpg" alt="Page 11">
+                </div>
+                <div class="gallery-item" data-full-image="../../images/project-images/Goblin/Portfolio Pag. 12.jpg">
+                    <img src="../../images/project-images/Goblin/thumb_Portfolio Pag. 12.jpg" alt="Page 12">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</span>
+        <img class="lightbox-content" id="lightbox-img" onclick="event.stopPropagation(); toggleLightboxResolution();" style="cursor: zoom-in;">
+        <span class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">&#10095;</span>
+    </div>
+
+    <footer>
+        <p>&copy;2025 Fiamma Iavarone - Illustration Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Big buttons initialization
+        (function(){
+            const buttons = document.querySelectorAll('.big-btn');
+            buttons.forEach(btn => {
+                const first = btn.dataset.first;
+                const second = btn.dataset.second;
+                const svgFirstImage = btn.querySelector('svg.first image');
+                const svgSecondImage = btn.querySelector('svg.second image');
+                
+                if (svgFirstImage && first) {
+                    try { svgFirstImage.setAttribute('href', first); } catch (e) { }
+                    svgFirstImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', first);
+                }
+                if (svgSecondImage && second) {
+                    try { svgSecondImage.setAttribute('href', second); } catch (e) { }
+                    svgSecondImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', second);
+                }
+
+                btn.addEventListener('click', () => {
+                    const link = btn.dataset.link;
+                    if (link) window.location.href = link;
+                });
+            });
+        })();
+
+        // Lightbox functionality with mid-res and full-res
+        let currentImageIndex = 0;
+        const galleryImages = [];
+        const galleryMidImages = [];
+        let showingFullRes = false;
+
+        // Collect all gallery images (use full-size from data attribute)
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            const fullImage = item.dataset.fullImage || item.querySelector('img').src;
+            galleryImages.push(fullImage);
+            
+            // Calculate mid-res path
+            const pathParts = fullImage.split('/');
+            const filename = pathParts[pathParts.length - 1];
+            const midFilename = 'mid_' + filename.replace(/\.[^/.]+$/, '') + '.jpg';
+            pathParts[pathParts.length - 1] = midFilename;
+            const midImage = pathParts.join('/');
+            galleryMidImages.push(midImage);
+            
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            showingFullRes = false;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightbox.classList.add('active');
+            lightboxImg.src = galleryMidImages[currentImageIndex];
+        }
+
+        function toggleLightboxResolution() {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+            
+            const lightboxImg = document.getElementById('lightbox-img');
+            if (!showingFullRes) {
+                // Switch to full resolution
+                lightboxImg.src = galleryImages[currentImageIndex];
+                showingFullRes = true;
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            showingFullRes = false;
+        }
+
+        function changeLightboxImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            } else if (currentImageIndex >= galleryImages.length) {
+                currentImageIndex = 0;
+            }
+            showingFullRes = false;
+            document.getElementById('lightbox-img').src = galleryMidImages[currentImageIndex];
+        }
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+                if (e.key === 'ArrowRight') changeLightboxImage(1);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Fiamma Iavarone</title>
+    <link rel="icon" type="image/svg+xml" href="../images/icons/Icona_Procione.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        header {
+            position: relative;
+            background: transparent;
+            padding: 0;
+            z-index: 100;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5px 32px 32px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Big buttons section */
+        .big-buttons {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 5px;
+            max-width: 1300px;
+            flex-wrap: nowrap;
+            padding: 0;
+            line-height: 0;
+        }
+
+        .big-btn.large {
+            width: 225px;
+            height: 150px;
+        }
+
+        .big-btn.small {
+            width: 200px;
+            height: 150px;
+            margin-left: 0;
+        }
+
+        .big-btn {
+            position: relative;
+            flex-shrink: 0;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            transition: none;
+            display: block;
+        }
+
+        .big-btn svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+        }
+
+        .big-btn svg image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .big-btn svg.first {
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.35s ease;
+        }
+
+        .big-btn svg.second {
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .big-btn:hover svg.second {
+            opacity: 1;
+        }
+
+        .big-btn:hover svg.first {
+            opacity: 0;
+        }
+
+        @media (max-width: 900px) {
+            .big-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+                margin: 1.25rem 0;
+                max-width: 90%;
+                padding: 0 1rem;
+            }
+            .big-btn { 
+                width: 100%; 
+                height: auto; 
+                aspect-ratio: 300 / 220; 
+                min-height: 160px; 
+            }
+        }
+
+        /* Projects Section */
+        .projects-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .projects-title {
+            font-family: 'Gaegu', cursive;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 700;
+            color: #E63946;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        /* Projects List - Row Layout */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 2rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-card {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-card-image {
+            flex: 0 0 50%;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .project-card-title {
+            flex: 1;
+            font-family: 'Gaegu', cursive;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #E63946;
+            text-align: left;
+            padding: 0 1rem;
+        }
+
+        /* Alternate layout - image on right for even items */
+        .project-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .project-card:nth-child(even) .project-card-title {
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                flex-direction: column !important;
+                gap: 1rem;
+            }
+
+            .project-card-image {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            .project-card-title {
+                text-align: center !important;
+                font-size: 2rem;
+                padding: 0;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            text-align: center;
+            color: #666666;
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+
+            .projects-title {
+                font-size: 2.5rem;
+            }
+
+            .slide-caption {
+                font-size: 1.2rem;
+            }
+
+            .prev, .next {
+                padding: 12px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+
+    <main>
+        <!-- Big buttons section -->
+        <section class="big-buttons">
+            <button class="big-btn large" data-first="../images/icons/Fiamma_Logo.svg" data-second="../images/icons/Fiamma_Logo_Click.svg" data-link="/" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Fiamma_Logo.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Fiamma_Logo.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 150 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Fiamma_Logo_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Fiamma_Logo_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../images/icons/Icona_Penna.svg" data-second="../images/icons/Icona_Penna_Click.svg" data-link="/" aria-label="Portfolio">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Penna.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Penna.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../images/icons/Icona_Procione.svg" data-second="../images/icons/Icona_Procione_Click.svg" data-link="/about" aria-label="About">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Procione.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Procione.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Procione_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Procione_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../images/icons/Icona_Contatti.svg" data-second="../images/icons/Icona_Contatti_Click.svg" data-link="/contact" aria-label="Contact">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Contatti.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Contatti.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Contatti_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Contatti_Click.svg" />
+                </svg>
+            </button>
+
+            <button class="big-btn small" data-first="../images/icons/Icona_Penna_Click.svg" data-second="../images/icons/Icona_Penna_Click.svg" data-link="/projects" aria-label="Projects">
+                <svg class="first" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Penna_Click.svg" />
+                </svg>
+                <svg class="second" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <image href="../images/icons/Icona_Penna_Click.svg" x="0" y="0" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xlink:href="../images/icons/Icona_Penna_Click.svg" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- Projects Section -->
+        <div class="projects-section">
+            <h1 class="projects-title">My Projects</h1>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <div class="project-card" onclick="window.location.href='/projects/badgequest'">
+                    <div class="project-card-image">
+                        <img src="../images/project-images/BadgeQuest/thumb_Copertina_BadgeQuestjpg.jpg" alt="BadgeQuest Project">
+                    </div>
+                    <div class="project-card-title">BadgeQuest</div>
+                </div>
+
+                <div class="project-card" onclick="window.location.href='/projects/pirats'">
+                    <div class="project-card-image">
+                        <img src="../images/project-images/Pirats/thumb_Pirats1.jpg" alt="Pirats Project">
+                    </div>
+                    <div class="project-card-title">Pirats</div>
+                </div>
+
+                <div class="project-card" onclick="window.location.href='/projects/goblin'">
+                    <div class="project-card-image">
+                        <img src="../images/project-images/Goblin/thumb_Portfolio Copertina.jpg" alt="Goblin Project">
+                    </div>
+                    <div class="project-card-title">Goblin Portfolio</div>
+                </div>
+
+                <div class="project-card" onclick="window.location.href='/projects/pattern'">
+                    <div class="project-card-image">
+                        <img src="../images/project-images/Pattern/thumb_Pattern_Nature.jpg" alt="Pattern Project">
+                    </div>
+                    <div class="project-card-title">Pattern Designs</div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy;2025 Fiamma Iavarone - Illustration Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Big buttons initialization
+        (function(){
+            const buttons = document.querySelectorAll('.big-btn');
+            buttons.forEach(btn => {
+                const first = btn.dataset.first;
+                const second = btn.dataset.second;
+
+                const svgFirstImage = btn.querySelector('svg.first image');
+                const svgSecondImage = btn.querySelector('svg.second image');
+                
+                if (svgFirstImage && first) {
+                    try { svgFirstImage.setAttribute('href', first); } catch (e) { }
+                    svgFirstImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', first);
+                }
+                if (svgSecondImage && second) {
+                    try { svgSecondImage.setAttribute('href', second); } catch (e) { }
+                    svgSecondImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', second);
+                }
+
+                btn.addEventListener('click', () => {
+                    const link = btn.dataset.link;
+                    if (link) window.location.href = link;
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
