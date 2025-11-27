@@ -149,23 +149,14 @@
             gap: 12px;
         }
 
-        /* Responsive columns */
+        /* Responsive columns - merge all into single column on mobile */
         @media (max-width: 768px) {
             .gallery-container {
+                flex-direction: column;
                 gap: 12px;
             }
-            .gallery-column:nth-child(3) {
-                display: none;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .gallery-container {
-                flex-direction: column;
-            }
-            .gallery-column:nth-child(2),
-            .gallery-column:nth-child(3) {
-                display: none;
+            .gallery-column {
+                width: 100%;
             }
         }
 
@@ -264,15 +255,29 @@
 
         @media (max-width: 900px) {
             .big-buttons {
-                flex-direction: column;
+                flex-direction: row;
+                flex-wrap: wrap;
                 gap: 12px;
                 margin: 20px 0;
-                max-width: 90%;
+                max-width: 100%;
                 padding: 0 16px;
+                justify-content: center;
             }
-            .big-btn { width: 100%; height: auto; aspect-ratio: 300 / 220; min-height: 160px; }
-            .big-btn.large { width: 100%; aspect-ratio: 300 / 220; }
-            .big-btn.small { width: 100%; aspect-ratio: 300 / 220; }
+            /* Large button takes full width on top */
+            .big-btn.large { 
+                width: 100%; 
+                height: auto; 
+                aspect-ratio: 300 / 150; 
+                min-height: 120px;
+            }
+            /* Small buttons in a row below, each taking ~23% width to fit 4 in a row */
+            .big-btn.small { 
+                width: calc(25% - 9px); 
+                height: auto; 
+                aspect-ratio: 300 / 220; 
+                min-height: 80px;
+                flex-shrink: 1;
+            }
         }
  
 
@@ -649,53 +654,76 @@
         
         ];
 
-        // Generate gallery with 3 separate columns
+        // Generate gallery with 3 separate columns (desktop) or 1 column (mobile)
         function generateGallery() {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
 
-            // Create 3 column containers
-            const column1 = document.createElement('div');
-            const column2 = document.createElement('div');
-            const column3 = document.createElement('div');
-            column1.className = 'gallery-column';
-            column2.className = 'gallery-column';
-            column3.className = 'gallery-column';
+            const isMobile = window.innerWidth <= 768;
 
-            // Distribute items into their designated columns
-            galleryItems.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'gallery-item';
-                itemDiv.style.animationDelay = `${index * 0.05}s`;
+            if (isMobile) {
+                // Mobile: single column with all images in order
+                const column = document.createElement('div');
+                column.className = 'gallery-column';
 
-                // Create image or placeholder using low-res thumb first
-                let imageHTML = '';
-                if (item.image) {
-                    const thumbSrc = item.thumb || item.image;
-                    imageHTML = `<img data-thumb="${thumbSrc}" data-full="${item.image}" alt="${item.title}" loading="lazy" class="gallery-img" style="width:100%; height:auto; display:block; object-fit: cover;" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E">`;
-                } else {
-                    imageHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%;">${item.title}</div>`;
-                }
+                galleryItems.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'gallery-item';
+                    itemDiv.style.animationDelay = `${index * 0.05}s`;
 
-                itemDiv.innerHTML = imageHTML;
+                    let imageHTML = '';
+                    if (item.image) {
+                        const thumbSrc = item.thumb || item.image;
+                        imageHTML = `<img data-thumb="${thumbSrc}" data-full="${item.image}" alt="${item.title}" loading="lazy" class="gallery-img" style="width:100%; height:auto; display:block; object-fit: cover;" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E">`;
+                    } else {
+                        imageHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%;">${item.title}</div>`;
+                    }
 
-                // Add to the correct column based on item.column property
-                if (item.column === 1) {
-                    column1.appendChild(itemDiv);
-                } else if (item.column === 2) {
-                    column2.appendChild(itemDiv);
-                } else if (item.column === 3) {
-                    column3.appendChild(itemDiv);
-                } else {
-                    // Default to column 1 if no column specified
-                    column1.appendChild(itemDiv);
-                }
-            });
+                    itemDiv.innerHTML = imageHTML;
+                    column.appendChild(itemDiv);
+                });
 
-            // Append all columns to gallery
-            gallery.appendChild(column1);
-            gallery.appendChild(column2);
-            gallery.appendChild(column3);
+                gallery.appendChild(column);
+            } else {
+                // Desktop: 3 columns
+                const column1 = document.createElement('div');
+                const column2 = document.createElement('div');
+                const column3 = document.createElement('div');
+                column1.className = 'gallery-column';
+                column2.className = 'gallery-column';
+                column3.className = 'gallery-column';
+
+                galleryItems.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'gallery-item';
+                    itemDiv.style.animationDelay = `${index * 0.05}s`;
+
+                    let imageHTML = '';
+                    if (item.image) {
+                        const thumbSrc = item.thumb || item.image;
+                        imageHTML = `<img data-thumb="${thumbSrc}" data-full="${item.image}" alt="${item.title}" loading="lazy" class="gallery-img" style="width:100%; height:auto; display:block; object-fit: cover;" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E">`;
+                    } else {
+                        imageHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%;">${item.title}</div>`;
+                    }
+
+                    itemDiv.innerHTML = imageHTML;
+
+                    // Add to the correct column based on item.column property
+                    if (item.column === 1) {
+                        column1.appendChild(itemDiv);
+                    } else if (item.column === 2) {
+                        column2.appendChild(itemDiv);
+                    } else if (item.column === 3) {
+                        column3.appendChild(itemDiv);
+                    } else {
+                        column1.appendChild(itemDiv);
+                    }
+                });
+
+                gallery.appendChild(column1);
+                gallery.appendChild(column2);
+                gallery.appendChild(column3);
+            }
         }
 
         // Lazy-load thumb images and wire lightbox
@@ -740,9 +768,18 @@
             }, 100);
         });
 
-        // Simple resize handler - CSS Grid handles responsive layout automatically
+        // Resize handler - regenerate gallery on breakpoint change
+        let lastWidth = window.innerWidth;
         window.addEventListener('resize', () => {
-            setupGalleryLazyAndLightbox();
+            const currentWidth = window.innerWidth;
+            // Regenerate gallery if crossing mobile breakpoint (768px)
+            if ((lastWidth <= 768 && currentWidth > 768) || (lastWidth > 768 && currentWidth <= 768)) {
+                generateGallery();
+                setTimeout(() => {
+                    setupGalleryLazyAndLightbox();
+                }, 100);
+            }
+            lastWidth = currentWidth;
         });
 
         // Mobile menu toggle
