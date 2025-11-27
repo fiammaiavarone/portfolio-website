@@ -7,7 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="../images/icons/Icona_Procione_Click.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -227,24 +227,33 @@
         /* About Section */
         .about-section {
             max-width: 900px;
-            margin: 0.5rem auto 0;
+            margin: 3rem auto 0;
             text-align: center;
         }
 
         /* Handwritten title */
         .handwritten-title {
-            font-family: 'Gaegu', cursive;
+            /*font-family: 'Patrick Hand', cursive;
             font-size: 3.5rem;
             margin-bottom: 2rem;
-            color: #E63946;
+            color: #ff6960;
             font-weight: 700;
+            */
+            font-family: 'Patrick Hand', cursive;
+            font-size: clamp(24px, 4vw, 48px);
+            font-weight: 700;
+            color: #ff6960;
+            text-transform: none;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.7rem;
+            line-height: 1.2;
         }
 
         /* Description text */
         .description {
-            font-size: 1.4rem;
-            line-height: 1.8;
-            color: #333333;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            color: #555555;
             margin-bottom: 3rem;
             max-width: 1000px;
             margin-left: auto;
@@ -260,7 +269,7 @@
         }
 
         .contact-email a {
-            color: #E63946;
+            color: #111111;
             text-decoration: none;
             transition: opacity 0.3s ease;
         }
